@@ -14,7 +14,7 @@ describe('best practices', function(){
     expect(val).to.eql('a');
   });
 
-  it('you should use parseInt correctly', function() {
+  xit('you should use parseInt correctly', function() {
     expect(bestPracticesAnswers.parseInt('12')).to.eql(12);
     expect(bestPracticesAnswers.parseInt('12px')).to.eql(12);
     expect(bestPracticesAnswers.parseInt('0x12')).to.eql(0);
