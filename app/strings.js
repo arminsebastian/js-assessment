@@ -15,6 +15,8 @@ exports.stringsAnswers = {
     }
     return result;
   },
+  //would be intersting to solve it using an array and a tmp variable
+  //with many less lines of code
   wordWrap: function(str, cols) {
     var string = '';
     var toGo = cols;
