@@ -16,36 +16,31 @@ exports.stringsAnswers = {
     return result;
   },
   wordWrap: function(str, cols) {
-    var wrappedString = '';
-    var colCounter = 0;
+    var string = '';
+    var toGo = cols;
     for (var i = 0; i < str.length; i++) {
-      if (colCounter >= 5 && str[i] === ' ') {
-        wrappedString += '\n';
-        colCounter = 0;
-      }
-      if ( colCounter < 5 && str[i] !== ' ' ) {
-        wrappedString += str[i];
-        colCounter ++;
-      }
-      if ( colCounter < 5 && str[i] === ' ') {
-        var next = str.slice( i + 1, ( i + 1 + cols - colCounter ) );
-        var isSpace = false;
-        for (var k = 0; k < next.length; k++) {
-          if (next[k] === ' ') {
-            isSpace = true;
-            break;
-          }
-        }
-        if (isSpace) {
-          wrappedString += str[i];
-          colCounter ++;
-        } else {
-          wrappedString += '\n';
-          colCounter = 0;
-        }
+      if (str[i] !== ' ') {
+        string += str[i];
+        toGo --;
+      } else {
+        var substring = str.substr( i + 1, toGo);
+        spaceHandler(str[i], substring);
       }
     }
-    return wrappedString;
+    function spaceHandler(char, subs) {
+      if ( toGo <= 0 ) {
+        string += '\n';
+        toGo = cols;
+        return;
+      }
+      if (subs.indexOf(' ') > -1) {
+        string += str[i];
+        toGo --;
+      } else {
+        string += '\n';
+      }
+    }
+    return string;
   },
   reverseString: function(str) {
     var reversed = '';
