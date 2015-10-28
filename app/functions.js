@@ -18,17 +18,13 @@ exports.functionsAnswers = {
   },
 
   makeClosures : function(arr, fn) {
-    var funcs = [];
-    for (var i = 0; i < arr.length; i ++){
-      var closure = function(){
-        return function (){
-          return fn(arr[i]);
-            };
+    var functionsArray = arr.map( function (value, index, arr) {
+      return function () {
+        return fn.call(null, value);
       };
-      var tmp = closure();
-      funcs.push(tmp);
-    }
-    return funcs;
+    });
+    console.log(arr, functionsArray, functionsArray[0]());
+    return functionsArray;
   },
 
   partial : function(fn, str1, str2) {
