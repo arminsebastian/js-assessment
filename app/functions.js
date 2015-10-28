@@ -2,7 +2,7 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.functionsAnswers = {
   argsAsArray : function(fn, arr) {
-    return fn.call(null, arr);
+    return fn.apply(null, arr);
   },
 
   speak : function(fn, obj) {
@@ -11,11 +11,10 @@ exports.functionsAnswers = {
   },
 
   functionFunction : function(str) {
-    // var result = '';
-    // for (var i = 0; i < str.length; i ++){
-    //   if (
-    //     result += str[i];
-    // }
+    var result = str + ', ';
+    return function (str2) {
+      return result += str2;
+    };
   },
 
   makeClosures : function(arr, fn) {
