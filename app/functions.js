@@ -30,7 +30,6 @@ exports.functionsAnswers = {
     var args1 = Array.prototype.slice.call(arguments,1);
     return function (moreArguments) {
       var args2 = args1.concat(Array.prototype.slice.call(arguments, 0));
-      console.log(args1, args2);
       return fn.apply(null, args2);
     };
   },
@@ -50,10 +49,25 @@ exports.functionsAnswers = {
   },
 
   partialUsingArguments : function(fn) {
-
+    var args1 = Array.prototype.slice.call(arguments,1);
+    return function (moreArguments) {
+      var args2 = args1.concat(Array.prototype.slice.call(arguments, 0));
+      return fn.apply(null, args2);
+    };
   },
 
   curryIt : function(fn) {
-
+    var curriedFn;
+    var ready = fn.length;
+    var args = [];
+    curriedFn = function(arg) {
+      args.push(arg);
+      if (args.length === ready) {
+       return fn.apply( null, args );
+      } else {
+        return arguments.callee;
+      }
+    };
+    return curriedFn;
   }
 };
