@@ -36,11 +36,17 @@ exports.functionsAnswers = {
   },
 
   useArguments : function() {
-
+    var args = Array.prototype.slice.call(arguments, 0);
+    var results = 0;
+    for (var i = 0; i < args.length; i++) {
+      results += args[i];
+    }
+    return results;
   },
 
   callIt : function(fn) {
-
+    var args = Array.prototype.slice.call(arguments,1);
+    fn.apply(null,args);
   },
 
   partialUsingArguments : function(fn) {
