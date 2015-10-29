@@ -23,12 +23,16 @@ exports.functionsAnswers = {
         return fn.call(null, value);
       };
     });
-    console.log(arr, functionsArray, functionsArray[0]());
     return functionsArray;
   },
 
   partial : function(fn, str1, str2) {
-
+    var args1 = Array.prototype.slice.call(arguments,1);
+    return function (moreArguments) {
+      var args2 = args1.concat(Array.prototype.slice.call(arguments, 0));
+      console.log(args1, args2);
+      return fn.apply(null, args2);
+    };
   },
 
   useArguments : function() {
