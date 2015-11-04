@@ -48,6 +48,13 @@ describe('recursion', function() {
     expect(result.indexOf('main.js') > -1).to.be.ok;
     expect(result.indexOf('underscore.js') > -1).to.be.ok;
   });
+
+  it('you should be able to return a list of files in a subdir', function() {
+    var result = recursionAnswers.listFiles(fileData, 'vendor');
+    expect(result.length).to.eql(2);
+    expect(result.indexOf('jquery.js') > -1).to.be.ok;
+    expect(result.indexOf('underscore.js') > -1).to.be.ok;
+  });
 });
 
 describe('permutation', function() {
