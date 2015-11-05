@@ -49,7 +49,26 @@ exports.recursionAnswers = {
   },
 
   fibonacci: function(n) {
+    var results = {
+      1: 0,
+      2: 1,
+      3: 2
+    };
 
+    function subrutine (counter) {
+      if (results[n] !== undefined) {
+        // debugger
+        return results[n];
+      }
+      if (results[n] === undefined) {
+        // debugger
+        results[counter] = results[counter - 1] + results[counter - 2];
+        subrutine(++counter);
+      }
+    }
+
+    subrutine( 4 );
+    return results[n];
   },
 
   validParentheses: function(n) {
