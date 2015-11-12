@@ -48,27 +48,31 @@ exports.recursionAnswers = {
     return results;
   },
 
-  fibonacci: function(n) {
-    var results = {
+  fibonacci: function fibo (n) {
+    fibo.results = {
       1: 0,
       2: 1,
       3: 2
     };
 
     function subrutine (counter) {
-      if (results[n] !== undefined) {
+      if (fibo.results[n] !== undefined) {
         // debugger
-        return results[n];
+        return fibo.results[n];
       }
-      if (results[n] === undefined) {
+      if (fibo.results[n] === undefined) {
         // debugger
-        results[counter] = results[counter - 1] + results[counter - 2];
+        fibo.results[counter] = fibo.results[counter - 1] + fibo.results[counter - 2];
         subrutine(++counter);
       }
     }
 
-    subrutine( 4 );
-    return results[n];
+    if ( fibo.results[n] ) {
+      return fibo.results[n];
+    } else {
+      subrutine( 4 );
+    }
+    return fibo.results[n];
   },
 
   validParentheses: function(n) {
