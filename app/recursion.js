@@ -9,10 +9,15 @@ exports.recursionAnswers = {
       for (var i = 0; i < d.length; i++) {
         if ( (typeof d[i]) === 'string') {
           actual === dirName ? targetList.push(d[i]): list.push(d[i]);
+
         } else if ( typeof d[i] === 'object' && actual === dirName) {
+
           return subrutine(d[i].files, actual);
+
         } else if ( typeof d[i] === 'object') {
+
           subrutine(d[i].files, d[i].dir);
+
         }
       }
     }
@@ -44,7 +49,6 @@ exports.recursionAnswers = {
       }
     }
     recursive(arr, 0);
-    console.log(results.length);
     return results;
   },
 
@@ -76,6 +80,27 @@ exports.recursionAnswers = {
   },
 
   validParentheses: function(n) {
+    var answers = [],
+        options = ['(',')'],
+        current = [];
 
+        function recursive (index, open, close) {
+
+          if ( close > open || open > n ) {
+            return ;
+          } else if ( index >= n*2 ) {
+            answers.push(current.join(''));
+            return ;
+          }
+
+          for (var i = 0; i < options.length; i++) {
+            current[index] = options[i];
+            options[i] === '(' ?
+              recursive( index + 1, open + 1, close ) :
+              recursive( index + 1, open, close + 1 );
+          }
+        }
+        recursive(0, 0, 0);
+        return answers;
   }
 };
