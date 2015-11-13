@@ -13,5 +13,13 @@ exports.asyncAnswers = {
 
   manipulateRemoteData : function(url) {
 
+    var processed = $.get(url).then( function(data) {
+      var results = [];
+      for (var i = 0; i < data.people.length; i++) {
+        results.push( data.people[i].name );
+      }
+      return results.sort();
+    });
+    return processed;
   }
 };
