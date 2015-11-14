@@ -2,19 +2,16 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.countAnswers = {
   count : function (start, end) {
-    var init = start;
-    var results = [];
-    var recursive = function(){
-      if (start !== init){ results.push(start);}
-      console.log(results);
-      if(start === end){return results;}
-      countAnswers.timer = setTimeout(function(){start++; recursive();},100);
-      console.log(countAnswers);
-    };
-    recursive();
+    function countBlocking (x) {
+      console.log(x);
+      if (x === end) {return;}
+      return setTimeout(countBlocking, 100, x + 1);
+    }
+    this.timer = countBlocking(start);
+    return this;
+    // setTimeout(countBlocking, 0, start);
   },
-  cancel : function (){
-    console.log(this.timer);
-    return clearTimeout(this.timer);
+  cancel : function () {
+    clearTimeout(this.timer);
   }
 };
