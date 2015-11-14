@@ -11,7 +11,7 @@ if ( typeof window === 'undefined' ) {
   * return an object with a cancel method, which should cancel the counting.
 */
 
-xdescribe('counter', function () {
+describe('counter', function () {
   var nums;
   var origConsoleLog;
 
@@ -37,7 +37,7 @@ xdescribe('counter', function () {
     this.clock.restore();
   });
 
-  it('should count from start number to end number, one per 1/10th of a second', function () {
+  xit('should count from start number to end number, one per 1/10th of a second', function () {
     this.timeout(600);
     countAnswers.count(1, 5);
 
@@ -53,7 +53,7 @@ xdescribe('counter', function () {
     expect(nums[4]).to.eql(5);
   });
 
-  it('should provide a method to cancel the counting', function () {
+  xit('should provide a method to cancel the counting', function () {
     this.timeout(600);
 
     var counter = countAnswers.count(1, 5);
